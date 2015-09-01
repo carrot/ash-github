@@ -1,0 +1,14 @@
+Usage:
+
+    ghtools:labels $label-config
+        Bulk creates labels in a Github repository from a label-config file.
+        You will be prompted for a Github repository to apply the labels.
+
+        Label config files are located the /extras/label_configs directory,
+        and are formatted with one label per line, with the label name on
+        the left,  separated by a colon (:) and the color hex value on the
+        right.
+
+        You will need to set GHTOOLS_TOKEN in your .ashrc file that is a
+        valid Github access token with permissions that are enough to
+        create labels in the repo you use.

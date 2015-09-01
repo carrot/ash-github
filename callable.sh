@@ -4,15 +4,17 @@ Ash__import "ghtools"
 Ghtools_label_config_directory="$Ash__call_directory/extras/label_configs"
 
 ##################################################
+# Just an alias for help
 ##################################################
 Ghtools__callable_main(){
     Ghtools__callable_help
 }
 
 ##################################################
+# Displays out the HELP.txt file
 ##################################################
 Ghtools__callable_help(){
-    Logger__log "TODO -- Help"
+    more "$Ash__active_module_directory/HELP.txt"
 }
 
 ##################################################
