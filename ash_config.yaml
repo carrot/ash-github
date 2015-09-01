@@ -1,0 +1,5 @@
+name: Github Tools
+callable_prefix: Ghtools
+version: 0.0.1
+author: Carrot Creative, Brandon Romano
+license: MIT
