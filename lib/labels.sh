@@ -18,7 +18,8 @@ Ghtools_create_single_label(){
     # Checking if POST worked
     post_errors=$(echo "$post_output" | grep "\"errors\":")
     if [[ -z "$post_errors" ]]; then
-        echo "1" # Success, early return
+        echo "1"
+        return
     fi
 
     # Update via PATCH
