@@ -1,7 +1,7 @@
 #!/bin/bash
 Ash__import "ghtools"
 
-Ghtools_label_config_directory="$Ash__call_directory/extras/label_configs"
+Ghtools_label_config_directory="$Ash__active_module_directory/extras/label_configs"
 
 ##################################################
 # Just an alias for help
