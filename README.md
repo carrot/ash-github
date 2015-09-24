@@ -1,6 +1,6 @@
-# Ash Github Tools
+# Ash-Github
 
-Ash-Ghtools is an [Ash](https://github.com/BrandonRomano/ash) module that contains collection of utility scripts that help automate using Github.
+Ash-Github is an [Ash](https://github.com/BrandonRomano/ash) module that contains collection of utility scripts that help automate using Github.
 
 Currently there's only support for bulk creating labels from config files, but this repository is generically named in hopes that it will be expanded upon in the future.
 
@@ -12,8 +12,8 @@ You're going to have to install [Ash](https://github.com/BrandonRomano/ash) to u
 
 After you have Ash installed, run either one of these two commands depending on your git clone preference:
 
-- `ash self:install git@github.com:carrot/ash-ghtools.git`
-- `ash self:install https://github.com/carrot/ash-ghtools.git`
+- `ash self:install git@github.com:carrot/ash-github.git`
+- `ash self:install https://github.com/carrot/ash-github.git`
 
 You can also add the `--global` flag to install globally, or add this to your `Ashmodules` file depending on your preference.
 
@@ -60,13 +60,13 @@ After you have a labels config file you're happy with, using this command is ver
 If I were using the carrots-web label config I would run on the command line:
 
 ```bash
-ash ghtools:labels carrots-web
+ash github:labels carrots-web
 ```
 
 I would then be prompted to input the repository, and if it were for this repo, I would input:
 
 ```
-carrot/ash-ghtools
+carrot/ash-github
 ```
 
 After entering this information in, your repository will be populated with the labels as defined in the labels config file.

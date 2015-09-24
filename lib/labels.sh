@@ -7,7 +7,7 @@
 # @param $2: Label name
 # @param $3: Label color
 ##################################################
-Ghtools_create_single_label(){
+Github_create_single_label(){
     # Try to create via POST
     post_output=$(curl \
         -s \

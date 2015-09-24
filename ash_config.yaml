@@ -1,4 +1,4 @@
-name: Github Tools
+name: Github
 callable_prefix: Github
 version: 0.0.1
 author: Carrot Creative, Brandon Romano
