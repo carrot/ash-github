@@ -45,7 +45,7 @@ Github__callable_labels(){
         local label=$(echo $line | awk -F':' '{print $1}')
         local color=$(echo $line | awk -F':' '{print $2}')
 
-        success=$(Github_create_single_label "$repo" "$label" "$color")
+        success=$(Github__create_single_label "$repo" "$label" "$color")
         if [[ "$success" -eq "1" ]]; then
             Logger__success "Added label: $label"
         else
