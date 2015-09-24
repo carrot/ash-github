@@ -1,5 +1,5 @@
 name: Github Tools
-callable_prefix: Ghtools
+callable_prefix: Github
 version: 0.0.1
 author: Carrot Creative, Brandon Romano
 license: MIT

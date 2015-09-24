@@ -6,14 +6,14 @@ Ghtools_label_config_directory="$Ash__active_module_directory/extras/label_confi
 ##################################################
 # Just an alias for help
 ##################################################
-Ghtools__callable_main(){
+Github__callable_main(){
     Ghtools__callable_help
 }
 
 ##################################################
 # Displays out the HELP.txt file
 ##################################################
-Ghtools__callable_help(){
+Github__callable_help(){
     more "$Ash__active_module_directory/HELP.txt"
 }
 
@@ -23,7 +23,7 @@ Ghtools__callable_help(){
 #
 # @param $1: The label config file
 ##################################################
-Ghtools__callable_labels(){
+Github__callable_labels(){
     # Checking if we've got a valid config file
     local label_config_file="$Ghtools_label_config_directory/$1"
     if [[ ! -f "$label_config_file" ]]; then
