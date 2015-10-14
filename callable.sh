@@ -24,6 +24,13 @@ Github__callable_help(){
 # @param $1: The label config file
 ##################################################
 Github__callable_labels(){
+    # Checking if variable exists
+    Github_validate_token
+    if [[ $? -ne 0 ]]; then
+        Logger__error "GITHUB_TOKEN must be set in the .ashrc file before calling labels"
+        return
+    fi
+
     # Checking if we've got a valid config file
     local label_config_file="$Github_label_config_directory/$1"
     if [[ ! -f "$label_config_file" ]]; then
