@@ -12,10 +12,8 @@ You're going to have to install [Ash](https://github.com/BrandonRomano/ash) to u
 
 After you have Ash installed, run either one of these two commands depending on your git clone preference:
 
-- `ash self:install git@github.com:carrot/ash-github.git`
-- `ash self:install https://github.com/carrot/ash-github.git`
-
-You can also add the `--global` flag to install globally, or add this to your `Ashmodules` file depending on your preference.
+- `ash self:install git@github.com:carrot/ash-github.git --global`
+- `ash self:install https://github.com/carrot/ash-github.git --global`
 
 #### Config
 
@@ -24,7 +22,7 @@ For this module you must have an `.ashrc` file.  The `.ashrc` is located in your
 Inside of your `.ashrc` file, you'll need to add a Github token with permissions to your repositories you want to work with:
 
 ```bash
-export GHTOOLS_TOKEN="YOUR_GITHUB_TOKEN_HERE"
+export GITHUB_TOKEN="YOUR_GITHUB_TOKEN_HERE"
 ```
 
 ## Labels
