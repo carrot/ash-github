@@ -49,6 +49,12 @@ Github__callable_labels(){
 
     # Adding all labels
     while read line; do
+        # Removing comments
+        line=$(echo "$line" | sed 's/\ *#.*//g')
+        if [[ ${#line} -eq 0 ]]; then
+            continue
+        fi
+
         local label=$(echo $line | awk -F':' '{print $1}')
         local color=$(echo $line | awk -F':' '{print $2}')
 
