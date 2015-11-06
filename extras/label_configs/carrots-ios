@@ -1,7 +1,7 @@
 # unwanted labels
-delete:help wanted
-delete:invalid
-delete:wontfix
+-delete:help wanted
+-delete:invalid
+-delete:wontfix
 
 # issue/pr status
 blocked:000000
