@@ -55,17 +55,7 @@ Github__callable_labels(){
             continue
         fi
 
-        local label=$(echo $line | awk -F':' '{print $1}')
-        local color=$(echo $line | awk -F':' '{print $2}')
-
-        response=$(Github__create_single_label "$repo" "$label" "$color")
-
-        if [[ "$response" = "added" ]]; then
-            Logger__success "Added label: $label"
-        elif [[ "$response" = "updated" ]]; then
-            Logger__success "Updated label: $label"
-        else
-            Logger__warning "Failed to add label: $label"
-        fi
+        # Handling action
+        Github__handle_action "$repo" "$line"
     done < $label_config_file
 }
