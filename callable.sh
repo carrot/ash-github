@@ -1,8 +1,6 @@
 #!/bin/bash
 Ash__import "github"
 
-Github_label_config_directory="$Ash__active_module_directory/extras/label_configs"
-
 ##################################################
 # Just an alias for help
 ##################################################
@@ -31,15 +29,6 @@ Github__callable_labels(){
         return
     fi
 
-    # Checking if we've got a valid config file
-    local label_config_file="$Github_label_config_directory/$1"
-    if [[ ! -f "$label_config_file" ]]; then
-        Logger__error "Requires a valid label config file to be passed in"
-        Logger__error "Here are the current label config files available:"
-        ls $Github_label_config_directory
-        exit
-    fi
-
     # Grabbing repo + validating input
     Logger__prompt "Input the the repository to add labels (ex, carrot/ash-github): "; read repo
     if [[ ! "$repo" =~ .+/.+ ]]; then
@@ -47,15 +36,6 @@ Github__callable_labels(){
         exit
     fi
 
-    # Adding all labels
-    while read line; do
-        # Removing comments
-        line=$(echo "$line" | sed 's/\ *#.*//g')
-        if [[ ${#line} -eq 0 ]]; then
-            continue
-        fi
-
-        # Handling action
-        Github__handle_action "$repo" "$line"
-    done < $label_config_file
+    # Handling the config file
+    Github__labels_handle_config_file "$repo" "$1" 0
 }

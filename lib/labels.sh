@@ -1,5 +1,46 @@
 #!/bin/bash
 
+# Label Configs location
+Github_label_config_directory="$Ash__active_module_directory/extras/label_configs"
+
+##################################################
+# Loads in a config file and handles it
+#
+# @param $1: The repo name
+# @param $2: The labels config name
+# @param $3: 1 if this is an import
+#            0 if this is the base file
+##################################################
+Github__labels_handle_config_file(){
+    # Checking if we've got a valid config file
+    local label_config_file="$Github_label_config_directory/$2"
+    if [[ ! -f "$label_config_file" ]]; then
+        # Import
+        if [[ $3 -eq 1 ]]; then
+            Logger__error "Failed to import: $2"
+        # Base File
+        else
+            Logger__error "Requires a valid label config file to be passed in"
+            Logger__error "Here are the current label config files available:"
+            ls $Github_label_config_directory
+        fi
+        # Break out of this!
+        return
+    fi
+
+    # Adding all labels
+    while read line; do
+        # Removing comments
+        local line=$(echo "$line" | sed 's/\ *#.*//g')
+        if [[ ${#line} -eq 0 ]]; then
+            continue
+        fi
+
+        # Handling action
+        Github__handle_action "$1" "$line"
+    done < $label_config_file
+}
+
 ##################################################
 # Handles a single line within a config file
 #
@@ -22,6 +63,11 @@ Github__handle_action(){
             else
                 Logger__warning "Failed to delete label: $label"
             fi
+
+        # Action is import
+        elif [[ "$action" == "-import" ]]; then
+            local import_file=$(echo $2 | awk -F':' '{print $2}')
+            Github__labels_handle_config_file "$1" "$import_file" 1
         fi
 
     # Default add line
