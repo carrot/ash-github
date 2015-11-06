@@ -1,6 +1,72 @@
 #!/bin/bash
 
 ##################################################
+# Handles a single line within a config file
+#
+# @param $1: The repo name
+# @param $2: The comment parsed line in a
+#            label_config file.
+##################################################
+Github__handle_action(){
+    # Checking if action
+    if [[ $2 == -* ]]; then
+        local action=$(echo $2 | awk -F':' '{print $1}')
+
+        # Action is delete
+        if [[ "$action" == "-delete" ]]; then
+            local label=$(echo $2 | awk -F':' '{print $2}')
+
+            local response=$(Github__delete_single_label "$1" "$label")
+            if [[ "$response" = "deleted" ]]; then
+                Logger__success "Deleted Label: $label"
+            else
+                Logger__warning "Failed to delete label: $label"
+            fi
+        fi
+
+    # Default add line
+    else
+        local label=$(echo $2 | awk -F':' '{print $1}')
+        local color=$(echo $2 | awk -F':' '{print $2}')
+
+        local response=$(Github__create_single_label "$1" "$label" "$color")
+
+        if [[ "$response" = "added" ]]; then
+            Logger__success "Added label: $label"
+        elif [[ "$response" = "updated" ]]; then
+            Logger__success "Updated label: $label"
+        else
+            Logger__warning "Failed to add label: $label"
+        fi
+    fi
+}
+
+##################################################
+# Deletes a single label from a repository
+#
+# @param $1: The repo name
+# @param $2: The label name
+#
+# @returns: 'failure' if we failed to delete the label
+#           'deleted' if we successfully deleted the label
+##################################################
+Github__delete_single_label(){
+    # Try to delete via DELETE
+    local delete_response=$(curl \
+        -s -o /dev/null -w "%{http_code}" \
+        -H "Authorization: token $GITHUB_TOKEN" \
+        -X DELETE "https://api.github.com/repos/$1/labels/$2")
+
+    # Checking if DELETE worked
+    if [[ $delete_response =~ 2.. ]]; then
+        echo "deleted"
+        return
+    fi
+
+    echo "failure"
+}
+
+##################################################
 # Creates a single label on a repository
 #
 # @param $1: Repository name
