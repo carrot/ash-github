@@ -56,13 +56,15 @@ Sometimes you might want to delete some labels (likely Github's default labels) 
 
 You can add in the your label config file a line with `-delete:tag-name` to go and delete a specific label.
 
+For example:
+
 ```
 -delete:wontfix
 ```
 
 #### Importing other Label Configs
 
-You may run into a case where you have a base label config, but you may have some slight differences between Android vs Web development.
+You may run into a case where you have a base label config, but you may have some slight differences between project types.
 
 This case is handled, and you may use the `-import:label-config-file-name`.
 
