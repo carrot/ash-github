@@ -37,7 +37,6 @@ You can add your own custom label configs in that directory for your own use.
 
 If you work with a team and have a consistent label config, it might make sense to fork this repo and add your own label config files.  If you're convinced you have a really good label config, feel free to create a PR for it.
 
-
 Label config files are very simple, and follow the following format, with one label per line:
 
 ```
@@ -50,6 +49,48 @@ An example file would look something like this:
 blocked:000000
 bug:fc2929
 ```
+
+#### Deleting Labels
+
+Sometimes you might want to delete some labels (likely Github's default labels) in the process of setting up a repo with your label config.
+
+You can add in the your label config file a line with `-delete:tag-name` to go and delete a specific label.
+
+For example:
+
+```
+-delete:wontfix
+```
+
+#### Importing other Label Configs
+
+You may run into a case where you have a base label config, but you may have some slight differences between project types.
+
+This case is handled, and you may use the `-import:label-config-file-name`.
+
+For example, our iOS team and Android team use a majority of the same labels, but we have custom platform specific tags.  Here is what our Android config file looks like:
+
+```
+# Carrots Mobile
+-import:carrots-mobile
+
+# issue platform
+android-4.0:a6c427
+android-4.1:a6c427
+android-4.4:a6c427
+android-5.0:a6c427
+android-6.0:a6c427
+small-screens:a6c427
+large-screens:a6c427
+```
+
+You will find `-import:carrots-mobile` at the top of our iOS config too.
+
+You're absolutely allowed to import multiple config files, but just be sure to watch out for circular references, as this library doesn't handle that case (and your script will run forever).
+
+#### Comments
+
+Bash style comments are supported in Label Config files, so anything after `#` is ignored.
 
 #### Using the Command
 
