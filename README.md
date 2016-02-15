@@ -1,6 +1,6 @@
 # Ash-Github
 
-Ash-Github is an [Ash](https://github.com/BrandonRomano/ash) module that contains collection of utility scripts that help automate using Github.
+Ash-Github is an [Ash](https://github.com/ash-shell/ash) module that contains collection of utility scripts that help automate using Github.
 
 Currently there's only support for bulk creating labels from config files, but this repository is generically named in hopes that it will be expanded upon in the future.
 
@@ -8,18 +8,16 @@ Currently there's only support for bulk creating labels from config files, but t
 
 #### Install
 
-You're going to have to install [Ash](https://github.com/BrandonRomano/ash) to use this module, as it is tightly coupled to the Ash core.
+You're going to have to install [Ash](https://github.com/ash-shell/ash) to use this module.
 
 After you have Ash installed, run either one of these two commands depending on your git clone preference:
 
-- `ash self:install git@github.com:carrot/ash-github.git --global`
-- `ash self:install https://github.com/carrot/ash-github.git --global`
+- `ash apm:install git@github.com:carrot/ash-github.git --global`
+- `ash apm:install https://github.com/carrot/ash-github.git --global`
 
 #### Config
 
-For this module you must have an `.ashrc` file.  The `.ashrc` is located in your home directory, and follows the same format as a `.bashrc` file.
-
-Inside of your `.ashrc` file, you'll need to add a Github token with permissions to your repositories you want to work with:
+Inside of your [~/.ashrc](https://github.com/ash-shell/ash#the-ashrc-file) file, you'll need to add a Github token with permissions to your repositories you want to work with:
 
 ```bash
 export GITHUB_TOKEN="YOUR_GITHUB_TOKEN_HERE"

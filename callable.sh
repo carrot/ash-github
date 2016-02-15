@@ -1,5 +1,4 @@
 #!/bin/bash
-Ash__import "github"
 
 ##################################################
 # Just an alias for help

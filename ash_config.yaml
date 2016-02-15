@@ -1,5 +1,5 @@
 name: Github
+package: github.com/carrot/ash-github
+is_callable: true
 callable_prefix: Github
-version: 0.0.1
-author: Carrot Creative, Brandon Romano
-license: MIT
+default_alias: github
