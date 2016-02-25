@@ -11,7 +11,7 @@ Github__callable_main(){
 # Displays out the HELP.txt file
 ##################################################
 Github__callable_help(){
-    more "$Ash__active_module_directory/HELP.txt"
+    more "$Ash__ACTIVE_MODULE_DIRECTORY/HELP.txt"
 }
 
 ##################################################

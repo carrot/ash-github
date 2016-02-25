@@ -23,7 +23,7 @@ Github_validate_token(){
             Logger__prompt "Enter Github Token (https://github.com/settings/tokens): "; read github_token
 
             local export_line="export GITHUB_TOKEN=\"$github_token\""
-            echo "$export_line" >> $Ash_rc_file # Store it to .ashrc
+            echo "$export_line" >> $Ash__RC_FILE # Store it to .ashrc
             export GITHUB_TOKEN="$github_token" # Exporting for current use
             return 0
         else

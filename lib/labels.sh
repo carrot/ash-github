@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Label Configs location
-Github_label_config_directory="$Ash__active_module_directory/extras/label_configs"
+Github_label_config_directory="$Ash__ACTIVE_MODULE_DIRECTORY/extras/label_configs"
 
 ##################################################
 # Loads in a config file and handles it
