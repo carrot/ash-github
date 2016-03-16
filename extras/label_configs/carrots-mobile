@@ -3,6 +3,9 @@
 -delete:invalid
 -delete:wontfix
 
+# QA
+-import:carrots-qa
+
 # issue/pr status
 blocked:000000
 on-hold:666666
