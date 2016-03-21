@@ -1,3 +1,6 @@
+# QA
+-import:carrots-qa
+
 blocked:000000
 bug:fc2929
 chore:eeeeee
