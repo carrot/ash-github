@@ -1,8 +1,8 @@
-# Carrots Mobile
--import:carrots-mobile
+# Carrots Base
+-import:carrots
 
-# issue platform
-phone:bfd4f2
-tablet:d4c5f9
-watch:c7def8
-tv:bfdadc
+# Platform
+platform-phone:a6b1b7
+platform-tablet:a6b1b7
+platform-watch:a6b1b7
+platform-tv:a6b1b7

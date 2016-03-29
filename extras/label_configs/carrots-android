@@ -1,11 +1,13 @@
-# Carrots Mobile
--import:carrots-mobile
+# Carrots Base
+-import:carrots
 
-# issue platform
-android-4.0:a6c427
-android-4.1:a6c427
-android-4.4:a6c427
-android-5.0:a6c427
-android-6.0:a6c427
-small-screens:a6c427
-large-screens:a6c427
+# Android Version
+android-version-4.0:59ac55
+android-version-4.1:59ac55
+android-version-4.4:59ac55
+android-version-5.0:59ac55
+android-version-6.0:59ac55
+
+# Screen Size
+android-screens-small:add6ab
+android-screens-large:add6ab

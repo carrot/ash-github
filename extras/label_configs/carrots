@@ -1,0 +1,33 @@
+# Remove Github defaults
+-delete:bug
+-delete:duplicate
+-delete:enhancement
+-delete:help wanted
+-delete:invalid
+-delete:question
+-delete:wontfix
+
+# Add Bug Labels
+bug-minor:ffaca9
+bug-major:ac3b36
+bug-critical:560100
+
+# Issue Type
+chore:e7f7f8
+enhancement:d6e5e6
+feature-request:adc6c8
+feature:75989b
+
+# Status
+blocked:000000
+in-progress:f4f7eb
+needs-review:d9e2b8
+on-hold:939b75
+
+# Priorities
+priority-high:4d5a7e
+priority-medium:8692b2
+priority-low:bbc9ee
+
+# Other
+wontfix:FFFFFF
