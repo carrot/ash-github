@@ -97,11 +97,15 @@ Github__handle_action(){
 #           'deleted' if we successfully deleted the label
 ##################################################
 Github__delete_single_label(){
+    local repo="$1"
+    local label="$2"
+    label=$(echo "$label" | sed 's/\ /%20/g')
+
     # Try to delete via DELETE
     local delete_response=$(curl \
         -s -o /dev/null -w "%{http_code}" \
         -H "Authorization: token $GITHUB_TOKEN" \
-        -X DELETE "https://api.github.com/repos/$1/labels/$2")
+        -X DELETE "https://api.github.com/repos/$repo/labels/$label")
 
     # Checking if DELETE worked
     if [[ $delete_response =~ 2.. ]]; then
