@@ -1,0 +1,25 @@
+# Remove Github defaults
+-import:clear-defaults
+
+# Add Bug Labels
+bug:ffaca9
+
+# Issue Type
+chore:e7f7f8
+enhancement:d6e5e6
+feature-request:adc6c8
+feature:75989b
+
+# Status
+blocked:000000
+in-progress:f4f7eb
+needs-review:d9e2b8
+on-hold:939b75
+
+# Priorities
+priority-high:bbc9ee
+priority-medium:8692b2
+priority-low:4d5a7e
+
+# Other
+wontfix:FFFFFF

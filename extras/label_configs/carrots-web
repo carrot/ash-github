@@ -1,25 +1,12 @@
-# QA
--import:carrots-qa
+# Carrots Base
+-import:carrots
 
-blocked:000000
-bug:fc2929
-chore:eeeeee
-chrome:207de5
-client:000000
-copy:bfe5bf
-discussion:0052cc
-duplicate:cccccc
-feature:5319e7
-ff:eb6420
-help-wanted:159818
-high-priority:f7c6c7
-ie:207de5
-in-developent:eb6420
-invalid:e6e6e6
-low-priority:c7def8
-medium-priority:fef2c0
-mobile:5319e7
-qa:f7c6c7
-safari:207de5
-tablet:d4c5f9
-wontfix:ffffff
+# Browsers
+browser-chrome:d6b79b
+browser-ff:d6b79b
+browser-ie:d6b79b
+browser-safari:d6b79b
+
+# Platforms
+platform-mobile:a6b1b7
+platform-tablet:a6b1b7
