@@ -8,9 +8,7 @@
 -delete:wontfix
 
 # Add Bug Labels
-bug-minor:ffaca9
-bug-major:ac3b36
-bug-critical:560100
+bug:ffaca9
 
 # Issue Type
 chore:e7f7f8
