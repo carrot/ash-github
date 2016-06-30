@@ -1,0 +1,8 @@
+# Remove Github defaults
+-delete:bug
+-delete:duplicate
+-delete:enhancement
+-delete:help wanted
+-delete:invalid
+-delete:question
+-delete:wontfix

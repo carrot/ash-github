@@ -1,11 +1,5 @@
 # Remove Github defaults
--delete:bug
--delete:duplicate
--delete:enhancement
--delete:help wanted
--delete:invalid
--delete:question
--delete:wontfix
+-import:clear-defaults
 
 # Add Bug Labels
 bug:ffaca9
