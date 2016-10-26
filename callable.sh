@@ -28,13 +28,27 @@ Github__callable_labels(){
         return
     fi
 
+        if [[ "$1" == "list" ]]; then
+            ls $Github_label_config_directory
+            exit
+        else
+            repo=$1
+            label=$2
+        fi
+
     # Grabbing repo + validating input
-    Logger__prompt "Input the the repository to add labels (ex, carrot/ash-github): "; read repo
-    if [[ ! "$repo" =~ .+/.+ ]]; then
-        Logger__error "Invalid repository format (ex, carrot/ash-github)"
-        exit
-    fi
+        if [[ "$repo" == "" ]]; then
+            Logger__prompt "Input the the repository to add labels (ex, carrot/ash-github): "; read repo
+            if [[ ! "$repo" =~ .+/.+ ]]; then
+                    Logger__error "Invalid repository format (ex, carrot/ash-github)"
+                    exit
+            fi
+        fi
+
+        if [[ "$label" == "" ]]; then
+            label=$1
+        fi
 
     # Handling the config file
-    Github__labels_handle_config_file "$repo" "$1" 0
+    Github__labels_handle_config_file "$repo" "$label" 0
 }

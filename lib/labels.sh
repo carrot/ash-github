@@ -21,11 +21,20 @@ Github__labels_handle_config_file(){
         # Base File
         else
             Logger__error "Requires a valid label config file to be passed in"
-            Logger__error "Here are the current label config files available:"
+            Logger__error "Here are the current available label config files:"
             ls $Github_label_config_directory
+            Logger__prompt "Input a label config from above (ex, carrots): "; read label
+            label_config_file="$Github_label_config_directory/$label"
+            if [[ ! -f "$label_config_file" ]]; then
+                # Retry Import
+                if [[ $3 -eq 1 ]]; then
+                    Logger__error "Failed to import: $label"
+                else
+                    Logger__error "Label config does not exist."
+                    exit
+                fi
+            fi
         fi
-        # Break out of this!
-        return
     fi
 
     # Adding all labels
