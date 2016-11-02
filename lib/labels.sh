@@ -22,7 +22,7 @@ Github__labels_handle_config_file(){
         else
             Logger__error "Requires a valid label config file to be passed in"
             Logger__error "Here are the current label config files available:"
-            ls $Github_label_config_directory
+            Github__labels_list
         fi
         # Break out of this!
         return
@@ -154,4 +154,11 @@ Github__create_single_label(){
     else
         echo "failure"
     fi
+}
+
+##################################################
+# Lists all labels in labels dir
+##################################################
+Github__labels_list(){
+    ls $Github_label_config_directory
 }

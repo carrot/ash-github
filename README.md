@@ -108,6 +108,12 @@ carrot/ash-github
 
 After entering this information in, your repository will be populated with the labels as defined in the labels config file.
 
+To list out all the labels you currently have run:
+
+```bash
+ash github:labels list
+```
+
 ## License
 
 [MIT](LICENSE.txt)

@@ -21,6 +21,11 @@ Github__callable_help(){
 # @param $1: The label config file
 ##################################################
 Github__callable_labels(){
+    if [[ $1 == "list" ]]; then
+        Github__labels_list
+        return
+    fi
+
     # Checking if variable exists
     Github_validate_token
     if [[ $? -ne 0 ]]; then
