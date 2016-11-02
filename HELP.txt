@@ -1,6 +1,6 @@
 Usage:
 
-    github:labels $label-config
+    github:labels [$label-config|list]
         Bulk creates labels in a Github repository from a label-config file.
         You will be prompted for a Github repository to apply the labels.
 
