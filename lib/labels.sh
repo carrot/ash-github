@@ -31,7 +31,7 @@ Github__labels_handle_config_file(){
                     Logger__error "Failed to import: $label"
                 else
                     Logger__error "Label config does not exist."
-                    exit
+                    return
                 fi
             fi
         fi
