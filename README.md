@@ -115,8 +115,8 @@ After entering this information in, your repository will be populated with the l
 Creating/deleting a repository on your Github.
 
 ```bash
-ash github:new foobar
-ash github:delete owner/foobar
+ash github:repo new foobar
+ash github:repo delete owner/foobar
 ```
 
 For more advance usage checkout [HELP.txt] or type `ash github:help`

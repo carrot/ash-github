@@ -58,13 +58,20 @@ Github__callable_labels(){
 }
 
 Github__callable_repo(){
-    for param in "$@"; do
-        if [[ "$param" == "new" ]]; then
-            Github__repo_new ${@:2}
-        elif [[ "$param" == "delete" ]]; then
-            Github__repo_delete ${@:2}
-        fi
-    done
+    if [[ "$1" == "" ]];then
+        Github__callable_help
+    else
+        for param in "$@"; do
+            if [[ "$param" == "new" ]]; then
+                Github__repo_new ${@:2}
+            elif [[ "$param" == "delete" ]]; then
+                Github__repo_delete ${@:2}
+            else
+                Logger__error "Unknown operation: \"$param\""
+                Github__callable_help
+            fi
+        done
+    fi
 }
 
 Github__repo_new(){

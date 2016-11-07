@@ -13,9 +13,9 @@ Usage:
         valid Github access token with permissions that are enough to
         create labels in the repo you use.
 
-    github:new
-        github:new repo           Tied to your account
-        github:new org/repo       Tied to org
+    github:repo new
+        github:repo new repo           Tied to your account
+        github:repo new org/repo       Tied to org
 
         Opts:
             -n      --name              Name of repository
@@ -32,5 +32,5 @@ Usage:
             -v      --verbose           Verbose CURL request
             -r      --dry-run           Pass CURL request thru netcat proxy
 
-    github:delete user/repo
+    github:repo delete user/repo
         Delete repository associated with user/repo
