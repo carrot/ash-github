@@ -146,7 +146,7 @@ Github__delete_labels(){
         -X GET "https://api.github.com/repos/$repo/labels")
 
     echo "$labels" | while IFS='' read -r line || [[ -n "$line" ]]; do
-        if [[ "$line" =~ (\"name\":)(\s?)(.*)\" ]]; then 
+        if [[ "$line" =~ (\"name\":)(\s?)(.*)\" ]]; then
             if [[ "${BASH_REMATCH[3]}" =~ \"(.*) ]]; then
                 label="${BASH_REMATCH[1]}"
                 local delete_response=$(curl \
