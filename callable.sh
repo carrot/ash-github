@@ -28,13 +28,31 @@ Github__callable_labels(){
         return
     fi
 
+    if [[ "$1" == "list" ]]; then
+        ls "$Github_label_config_directory"
+        return
+    elif [[ ! $1 =~ (.*)\/(.*) ]]; then
+        repo=""
+        label=$1
+    else
+        repo=$1
+        label=$2
+    fi
+
+
     # Grabbing repo + validating input
-    Logger__prompt "Input the the repository to add labels (ex, carrot/ash-github): "; read repo
-    if [[ ! "$repo" =~ .+/.+ ]]; then
-        Logger__error "Invalid repository format (ex, carrot/ash-github)"
-        exit
+    if [[ "$repo" == "" ]]; then
+        if [[ -d .git ]] && [[ $(git config --local --get remote.origin.url) =~ git@github\.com:(.*)\/(.*)\.git ]]; then
+            repo="${BASH_REMATCH[1]}/${BASH_REMATCH[2]}"
+        else
+            Logger__prompt "Input the the repository to add labels (ex, carrot/ash-github): "; read repo
+            if [[ ! "$repo" =~ .+/.+ ]]; then
+                Logger__error "Invalid repository format (ex, carrot/ash-github)"
+                return
+            fi
+        fi
     fi
 
     # Handling the config file
-    Github__labels_handle_config_file "$repo" "$1" 0
+    Github__labels_handle_config_file "$repo" "$label" 0
 }

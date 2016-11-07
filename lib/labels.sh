@@ -21,11 +21,20 @@ Github__labels_handle_config_file(){
         # Base File
         else
             Logger__error "Requires a valid label config file to be passed in"
-            Logger__error "Here are the current label config files available:"
+            Logger__error "Here are the current available label config files:"
             ls $Github_label_config_directory
+            Logger__prompt "Input a label config from above (ex, carrots): "; read label
+            label_config_file="$Github_label_config_directory/$label"
+            if [[ ! -f "$label_config_file" ]]; then
+                # Retry Import
+                if [[ $3 -eq 1 ]]; then
+                    Logger__error "Failed to import: $label"
+                else
+                    Logger__error "Label config does not exist."
+                    return
+                fi
+            fi
         fi
-        # Break out of this!
-        return
     fi
 
     # Adding all labels
@@ -57,11 +66,15 @@ Github__handle_action(){
         if [[ "$action" == "-delete" ]]; then
             local label=$(echo $2 | awk -F':' '{print $2}')
 
-            local response=$(Github__delete_single_label "$1" "$label")
-            if [[ "$response" = "deleted" ]]; then
-                Logger__success "Deleted Label: $label"
+            if [[ "$label" == "all" ]]; then
+                Github__delete_labels "$1"
             else
-                Logger__warning "Failed to delete label: $label"
+                local response=$(Github__delete_label "$1" "$label")
+                if [[ "$response" = "deleted" ]]; then
+                    Logger__success "Deleted Label: $label"
+                else
+                    Logger__warning "Failed to delete label: $label"
+                fi
             fi
 
         # Action is import
@@ -96,7 +109,7 @@ Github__handle_action(){
 # @returns: 'failure' if we failed to delete the label
 #           'deleted' if we successfully deleted the label
 ##################################################
-Github__delete_single_label(){
+Github__delete_label(){
     local repo="$1"
     local label="$2"
     label=$(echo "$label" | sed 's/\ /%20/g')
@@ -114,6 +127,40 @@ Github__delete_single_label(){
     fi
 
     echo "failure"
+}
+
+##################################################
+# Deletes all labels from a repository
+#
+# @param $1: The repo name
+#
+# @returns: 'failure' if we failed to delete the label
+#           'deleted' if we successfully deleted the label
+##################################################
+Github__delete_labels(){
+    local repo="$1"
+    # fetch all labels
+    local labels=$(curl \
+        -s \
+        -H "Authorization: token $GITHUB_TOKEN" \
+        -X GET "https://api.github.com/repos/$repo/labels")
+
+    echo "$labels" | while IFS='' read -r line || [[ -n "$line" ]]; do
+        if [[ "$line" =~ (\"name\":)(\s?)(.*)\" ]]; then
+            if [[ "${BASH_REMATCH[3]}" =~ \"(.*) ]]; then
+                label="${BASH_REMATCH[1]}"
+                local delete_response=$(curl \
+                    -s -o /dev/null -w "%{http_code}" \
+                    -H "Authorization: token $GITHUB_TOKEN" \
+                    -X DELETE "https://api.github.com/repos/$repo/labels/$label")
+                if [[ $delete_response =~ 2.. ]]; then
+                    Logger__success "Deleted Label: $label"
+                else
+                    Logger__warning "Failed to delete label: $label"
+                fi
+            fi
+        fi
+    done
 }
 
 ##################################################
