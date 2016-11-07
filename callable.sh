@@ -97,7 +97,7 @@ Github__repo_new(){
         if [[ ! "$#" -ne 1 ]]; then # only name
                 name="$1"
         elif [[ "$1" =~ ^((-{1,2})([Hh]$|[Hh][Ee][Ll][Pp])|)$ ]]; then
-            Github__callable_help; exit
+            Github__callable_help
         else
             while [[ $# -gt 0 ]]; do
                 opt="$1"
@@ -117,7 +117,7 @@ Github__repo_new(){
                     "-l"|"--license"           ) license="$1"; shift;;
                     "-v"|"--verbose"           ) verbose=true; shift;;
                     "-r"|"--dry-run"           ) dryRun=true; shift;;
-                    *                          ) Logger__error "Invalid option: \""$opt"\"" >&2 exit 1;;
+                    *                          ) Logger__error "Invalid option: \""$opt"\""
                 esac
             done
         fi
