@@ -29,7 +29,7 @@ Github__callable_labels(){
     fi
 
     if [[ "$1" == "list" ]]; then
-        ls $Github_label_config_directory
+        ls "$Github_label_config_directory"
         return
     elif [[ ! $1 =~ (.*)\/(.*) ]]; then
         repo=""
@@ -48,7 +48,7 @@ Github__callable_labels(){
             Logger__prompt "Input the the repository to add labels (ex, carrot/ash-github): "; read repo
             if [[ ! "$repo" =~ .+/.+ ]]; then
                 Logger__error "Invalid repository format (ex, carrot/ash-github)"
-                exit
+                return
             fi
         fi
     fi
