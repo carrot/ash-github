@@ -39,7 +39,6 @@ Github__callable_labels(){
         label=$2
     fi
 
-
     # Grabbing repo + validating input
     if [[ "$repo" == "" ]]; then
         if [[ -d .git ]] && [[ $(git config --local --get remote.origin.url) =~ git@github\.com:(.*)\/(.*)\.git ]]; then
@@ -57,6 +56,11 @@ Github__callable_labels(){
     Github__labels_handle_config_file "$repo" "$label" 0
 }
 
+##################################################
+# Defines repo callable
+#
+# @params: action [params]
+##################################################
 Github__callable_repo(){
     if [[ "$1" == "" ]];then
         Github__callable_help
@@ -64,16 +68,38 @@ Github__callable_repo(){
         for param in "$@"; do
             if [[ "$param" == "new" ]]; then
                 Github__repo_new ${@:2}
+                break
             elif [[ "$param" == "delete" ]]; then
                 Github__repo_delete ${@:2}
+                break
             else
                 Logger__error "Unknown operation: \"$param\""
                 Github__callable_help
+                break
             fi
         done
     fi
 }
 
+##################################################
+# Creates a new Gitub repository
+#
+# @param $1: name
+#
+# @flag -n|--name               *Required
+# @flag -d|--description
+# @flag -h|--homepage
+# @flag -p|--private
+# @flag -i|--disable-issues
+# @flag -w|--disable-wiki
+# @flag -D|--disable-downloads
+# @flag -t|--teams              **integer
+# @flag -a|--auto-init
+# @flag -g|--gitignore
+# @flag -l|--license
+# @flag -v|--verbose
+# @flag -r|--dry-run
+##################################################
 Github__repo_new(){
     Github_validate_token
 
@@ -99,7 +125,7 @@ Github__repo_new(){
     elif [[ "$1" =~ ^((-{1,2})([Hh]$|[Hh][Ee][Ll][Pp])|)$ ]]; then
         Github__callable_help
     else
-        while [[ $# -gt 0 ]]; do
+        while [[ $# -gt 1 ]]; do
             opt="$1"
             shift;
             current_arg="$1"
@@ -160,7 +186,7 @@ Github__repo_new(){
         -H "Content-Type: application/json" \
         -X POST "$url" \
         -d "$data"
-        echo "body: $data"
+        printf "body: $data\n"
     else # real request
         local res=$(curl -s \
             "$curlOpts" \
@@ -169,21 +195,30 @@ Github__repo_new(){
             -X POST "$url" \
             -d "$data")
 
+        if [[ "$verbose" == true ]]; then
+            printf "$res\n"
+        fi
+
         if [[ ! "$res" =~ 2.. ]]; then
-            echo "Failed to create your repository."
-            echo "Status: $res"
+            printf "Failed to create your repository.\n"
+            printf "Status: $res\n"
         else
-            echo "Successfully created your repository."
+            printf "Successfully created your repository.\n"
         fi
     fi
 }
 
+##################################################
+# Delets a Gitub repository
+#
+# @param $1: owner/repository
+##################################################
 Github__repo_delete(){
     local url="https://api.github.com/repos/$@"
     local repo=''
 
     if [[ ! "$@" =~ .*\/.* ]]; then
-        echo "Pass your repository as owner/repo. (ie, ash-shell/foo)"
+        printf "Pass your repository as owner/repo. (ie, ash-shell/foo)\n"
         return
     fi
 
@@ -197,10 +232,10 @@ Github__repo_delete(){
                 -X DELETE "$url")
 
             if [[ $res != "" ]]; then
-                echo "Failed to delete repository."
-                echo "Status: $res"
+                printf "Failed to delete repository.\n"
+                printf "Status: $res\n"
             else
-                echo "Successfully deleted repository."
+                printf "Successfully deleted repository.\n"
             fi
         else
             return
