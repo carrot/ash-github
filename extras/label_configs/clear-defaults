@@ -6,3 +6,4 @@
 -delete:invalid
 -delete:question
 -delete:wontfix
+-delete:good first issue
